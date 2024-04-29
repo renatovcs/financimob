@@ -23,6 +23,10 @@ public class Main {
         ArrayList<Financiamento> listaFinanciamentos = solicitarDadosFinanciamento(2, 2, 2);
 
         imprimirListaFinanciamentos(listaFinanciamentos);
+        salvaListaFinanciamentos(listaFinanciamentos);
+        recuperaListaFinanciamentos(listaFinanciamentos);
+        serializaListaFinanciamentos(listaFinanciamentos);
+        desserializaListaFinanciamentos(listaFinanciamentos);
 
     }
 
@@ -101,12 +105,8 @@ public class Main {
         try {
             escritor = new FileWriter("arquivoTexto.txt");
 
-            int contadorLetras = 0;
-
             for (Financiamento 	financSelecionado : listaFinanciamentos) {
                 escritor.write(financSelecionado.gerarLinhaTexto());
-
-                //while (contadorLetras < financSelecionado. .length()) {}
             }
 
             escritor.flush();
@@ -126,14 +126,12 @@ public class Main {
         try {
             leitor = new FileReader("arquivoTexto.txt");
 
-            int contadorLetras = 0;
-
-            for (Financiamento 	financSelecionado : listaFinanciamentos) {
-                leitor.read();
-
-                //while (contadorLetras < financSelecionado. .length()) {}
+            int caractereLido;
+       
+            while ((caractereLido = leitor.read()) != -1) {
+                System.out.print((char)caractereLido);
             }
-
+                
             leitor.close();
 
         } catch (FileNotFoundException e) {
@@ -181,7 +179,7 @@ public class Main {
             }
            
             inputStream.close();
-            
+
         } catch (EOFException e) {
             System.out.println("Fim do arquivo.");
 
