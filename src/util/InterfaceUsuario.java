@@ -1,7 +1,6 @@
 package util;
 
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class InterfaceUsuario {
 
@@ -148,7 +147,7 @@ public class InterfaceUsuario {
         double area = 0;
 
         System.out.printf("Informe a área do terreno do imóvel:\n");
-        
+
         try {
             area = this.entrada.nextDouble();
         } catch (Exception e) {
