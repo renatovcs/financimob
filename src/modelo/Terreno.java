@@ -27,6 +27,15 @@ public class Terreno extends Financiamento {
         return this.calcularTotalPagamento();
     }
 
+    public String gerarLinhaTexto() {
+        return ("tereno;" + 
+            String.format("%.2f", this.consultarValorImovel())  	      + ";" + 
+            String.format("%.2f", this.consultarValorFinanciamento())  + ";" + 
+            String.format("%.2f", this.taxaJurosAnual)                 + ";" + 
+            String.format("%.0f", this.prazoFinanciamento)             + ";" + 
+            (this.zonaLocalizacao == 1 ? "residencial" : "comercial"));
+
+    }
 
 
 }

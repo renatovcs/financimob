@@ -48,4 +48,24 @@ public class Casa extends Financiamento {
         return this.calcularTotalPagamento();
     }
 
+    public String gerarLinhaTexto() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("casa\n");
+        sb.append(String.format("%.2f", this.consultarValorImovel()) + "\n");
+        sb.append(String.format("%.2f", this.consultarValorFinanciamento()) + "\n");
+        sb.append(String.format("%.2f", this.taxaJurosAnual) + "\n");
+        sb.append(String.format("%.0f", this.prazoFinanciamento) + "\n");
+        sb.append(String.format("%.2f", this.seguroObrigatorio) + "\n");
+        sb.append(String.format("%.2f", this.areaConstruida) + "\n");
+        sb.append(String.format("%.2f", this.areaTerreno) + "\n");
+        sb.append(String.format("%.2f", this.valorDesconto) + "\n");
+
+        this.linhaTexto = sb.toString();
+
+        return this.linhaTexto;
+
+    }
+
 }

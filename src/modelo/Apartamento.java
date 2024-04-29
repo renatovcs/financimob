@@ -26,6 +26,16 @@ public class Apartamento extends Financiamento {
         return this.calcularPagamentoMensal() * (this.prazoFinanciamento * 12);
     }
 
+    public String gerarLinhaTexto() {
+        return ("apartamento;" + 
+            String.format("%.2f", this.consultarValorImovel())  	      + ";" + 
+            String.format("%.2f", this.consultarValorFinanciamento())  + ";" + 
+            String.format("%.2f", this.taxaJurosAnual)                 + ";" + 
+            String.format("%.0f", this.prazoFinanciamento)             + ";" + 
+            String.format("%.2f", this.vagasGaragem)                   + ";" + 
+            String.format("%.2f", this.numeroAndar)                    + ";" );
+
+    }
 
 
 }
