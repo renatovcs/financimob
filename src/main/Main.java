@@ -39,6 +39,13 @@ public class Main {
         InterfaceUsuario interfaceUsuario  = new InterfaceUsuario();
         ArrayList<Financiamento> listaFinanciamentos = new ArrayList<Financiamento>();
 
+        try {
+            Runtime.getRuntime().exec("clear");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         System.out.printf("\n\nBem vindo ao sistema de simulação de empréstimos!\nInforme os valores solicitados e veja dos resultados.\n\n");
 
         while (valorImovel == 0) valorImovel = interfaceUsuario.pedirValorImovel();
@@ -54,7 +61,7 @@ public class Main {
 
             while (financimob.areaTerreno <= 0) financimob.areaTerreno = interfaceUsuario.pedirAreaTerreno(i);
 
-            while (financimob.valorDesconto < 0) financimob.valorDesconto = interfaceUsuario.pedirValorDesconto(i, financimob);
+            while (financimob.valorDesconto < 0) financimob.informarDesconto(interfaceUsuario.pedirValorDesconto(i));
 
             listaFinanciamentos.add(financimob);
         }
@@ -109,8 +116,10 @@ public class Main {
         try {
             escritor = new FileWriter("arquivoTexto.txt");
 
+            int i = 1;
             for (Financiamento 	financSelecionado : listaFinanciamentos) {
-                escritor.write(financSelecionado.gerarLinhaTexto());
+                escritor.write(financSelecionado.gerarLinhaTexto(i));
+                i++;
             }
 
             escritor.flush();
@@ -127,6 +136,8 @@ public class Main {
 
         FileReader leitor = null;
 
+        System.out.println("Inicio da leitura do arquivo de texto.\n");
+
         try {
             leitor = new FileReader("arquivoTexto.txt");
 
@@ -137,6 +148,8 @@ public class Main {
             }
                 
             leitor.close();
+
+            System.out.println("\n\nFim da leitura do arquivo de texto.\n\n");
 
         } catch (FileNotFoundException e) {
             System.out.println("O arquivo não foi encontrado");
@@ -170,22 +183,25 @@ public class Main {
 
         ObjectInputStream inputStream = null;
 
+        System.out.println("Inicio da leitura do arquivo serializado.\n");
+
         try {
             
             inputStream = new ObjectInputStream(new FileInputStream("listaFinanciamento.test"));
             
             Object objeto = null;
-
+            int i = 1;
             while((objeto = inputStream.readObject()) != null) {
                 if (objeto instanceof Financiamento) {
-                    System.out.println(((Financiamento)objeto).gerarLinhaTexto());
+                    System.out.println(((Financiamento)objeto).gerarLinhaTexto(i));
+                    i++;
                 }
             }
            
             inputStream.close();
 
         } catch (EOFException e) {
-            System.out.println("Fim do arquivo.");
+            System.out.println("\n\nFim da leitura do arquivo serializado.\n\n");
 
         } catch (IOException e) {
             e.printStackTrace();

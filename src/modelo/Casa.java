@@ -20,9 +20,12 @@ public class Casa extends Financiamento {
     }
 
     private boolean validarDesconto(double valorJuros, double valorDesconto) throws DescontoMaiorDoQueJurosException {
+
+        float valorJuros2f = Math.round(valorJuros * 100.0f) / 100.0f;
+        float valorDesconto2f = Math.round(valorDesconto * 100.0f) / 100.0f;
         
-        if (valorDesconto >  valorJuros) {            
-            throw new DescontoMaiorDoQueJurosException("Desconto maior que os juros!");
+        if (valorDesconto2f > valorJuros2f) {            
+            throw new DescontoMaiorDoQueJurosException("Desconto consedido não pode ser superior ao valor dos juros calculados.");
         }
 
         return true;
@@ -36,11 +39,14 @@ public class Casa extends Financiamento {
         try {
             validarDesconto(this.valorJuros, this.valorDesconto);
         } catch (DescontoMaiorDoQueJurosException e) {
-            
-            System.out.printf("\nMsg exception:\n\n" + e);
-            System.out.printf("\nValor do desconto:" + String.format("%.2f", this.valorDesconto));
-            System.out.printf("\nValor dos juros:" + String.format("%.2f", this.valorJuros));
+            System.out.print("\n" + e);
+            System.out.print("\nValor do desconto concedido: R$ " + String.format("%.2f", this.valorDesconto));
+            System.out.print("\nValor dos juros calculados:  R$ " + String.format("%.2f", this.valorJuros));
+            System.out.print("\n");
+
+            this.valorDesconto = -1;
         }
+
          
     }
     
@@ -56,19 +62,19 @@ public class Casa extends Financiamento {
         return this.calcularTotalPagamento();
     }
 
-    public String gerarLinhaTexto() {
+    public String gerarLinhaTexto(int sequencia) {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("casa\n");
-        sb.append(String.format("%.2f", this.consultarValorImovel()) + "\n");
-        sb.append(String.format("%.2f", this.consultarValorFinanciamento()) + "\n");
-        sb.append(String.format("%.2f", this.taxaJurosAnual) + "\n");
-        sb.append(this.prazoFinanciamento + "\n");
-        sb.append(String.format("%.2f", this.seguroObrigatorio) + "\n");
-        sb.append(String.format("%.2f", this.areaConstruida) + "\n");
-        sb.append(String.format("%.2f", this.areaTerreno) + "\n");
-        sb.append(String.format("%.2f", this.valorDesconto) + "\n");
+        sb.append(sequencia + " Condições do empréstimo para casa\n");
+        sb.append("Valor do imóvel: " + String.format("%.2f", this.consultarValorImovel()) + "\n");
+        sb.append("Valor do financiamento: " + String.format("%.2f", this.consultarValorFinanciamento()) + "\n");
+        sb.append("Valor da taxa de juros anual: " + String.format("%.2f", this.taxaJurosAnual) + "\n");
+        sb.append("Prazo do financiamento: " + this.prazoFinanciamento + "\n");
+        sb.append("Valor do seguro obrigatório: " + String.format("%.2f", this.seguroObrigatorio) + "\n");
+        sb.append("Área construída: " + String.format("%.2f", this.areaConstruida) + "\n");
+        sb.append("Área do terreno: " + String.format("%.2f", this.areaTerreno) + "\n");
+        sb.append("Valor do desconto concedido: " + String.format("%.2f", this.valorDesconto) + "\n\n");
 
         this.linhaTexto = sb.toString();
 

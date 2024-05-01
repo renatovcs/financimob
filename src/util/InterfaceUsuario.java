@@ -1,15 +1,54 @@
 package util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import modelo.Casa;
 
 public class InterfaceUsuario {
 
-    private Scanner entrada;
+    private Scanner entry;
 
     public InterfaceUsuario() {
-        this.entrada = new Scanner(System.in);
+        this.entry = new Scanner(System.in);
+    }
+
+
+    private double readDouble(double init) {
+        double value = init;
+
+        try {
+            value = this.entry.nextDouble();
+        } catch (InputMismatchException e) {
+            this.entry  = null;
+            System.out.printf("\nValor precisa ser um número!\n");
+            this.entry = new Scanner(System.in);
+        } catch (Exception e) {
+            entry = null;
+            System.out.printf("\nValor inválido!\n" + e);
+            this.entry = new Scanner(System.in);
+        }
+
+        return value;
+    }
+
+    protected int readInteger(int init) {
+        int value = init;
+
+        try {
+            value = this.entry.nextInt();
+        } catch (InputMismatchException e) {
+            this.entry  = null;
+            System.out.printf("\nValor precisa ser um número inteiro!\n");
+            this.entry = new Scanner(System.in);
+
+        } catch (Exception e) {
+            entry = null;
+            System.out.printf("\nValor inválido!\n" + e);
+            this.entry = new Scanner(System.in);
+        }
+
+        return value;
     }
 
     public double pedirValorImovel(){
@@ -18,11 +57,7 @@ public class InterfaceUsuario {
         System.out.printf("Informe um valor de imóvel para as simulações em R$: ");
 
         try {
-            valor = this.entrada.nextDouble();
-
-        } catch (Exception e) {
-            System.out.printf("\nValor do imóvel inválido!\n" + e);
-            return 0;
+            valor = readDouble(valor);
 
         } finally {
             if (valor <= 0) System.out.printf("\nValor deve ser maior que zero!\n");
@@ -39,11 +74,7 @@ public class InterfaceUsuario {
         System.out.printf("Informe o prazo do financiamento em anos para todas as simulações: ");
 
         try {
-            prazo = this.entrada.nextInt();
-
-        } catch (Exception e) {
-            System.out.printf("\nPrazo de financiamento inválido!\n" + e);
-            return 0;
+            prazo = readInteger(prazo);
 
         } finally {
             if (prazo <= 0 || prazo > 40) {
@@ -63,11 +94,7 @@ public class InterfaceUsuario {
         System.out.printf("Informe o valor da taxa de juros para todas as simulações: ");
 
         try {
-            taxa = this.entrada.nextDouble();
-            
-        } catch (Exception e) {
-            System.out.printf("\nValor da taxa de juros inválida!\n" + e);
-            return 0;
+            taxa = readDouble(taxa);
 
         } finally {
             if (taxa <= 0) System.out.printf("\nValor da taxa de juros deve ser maior que zero!\n");
@@ -83,12 +110,7 @@ public class InterfaceUsuario {
         System.out.printf("\nSimulação do terreno " + sequencia + " - Informe o tipo de zona do imóvel (1) resisencial ou (2) comercial: ");
 
         try {
-            zona = this.entrada.nextInt();
-
-        } catch (Exception e) {
-            System.out.printf("\nZona inválida!\n" + e);
-            return 0;
-
+            zona = readInteger(zona);
         } finally {
             if (zona <= 0 || zona >= 3) {
                 System.out.printf("\nZona deve ser (1) resisencial ou (2) comercial!\n");
@@ -107,10 +129,8 @@ public class InterfaceUsuario {
         System.out.printf("\nSimulação do apartamento " + sequencia + " - Informe quantas vagas na garagem o imóvel possui: ");
 
         try {
-            vaga = this.entrada.nextInt();
-        } catch (Exception e) {
-            System.out.printf("\nQuantidade inválida!\n" + e);
-            return -1;
+            vaga = readInteger(vaga);
+
         } finally {
             if (vaga <= -1 || vaga > 10) {
                 System.out.printf("\nQuantidade de vagas deve ser entre 0 e 10!\n");
@@ -128,9 +148,7 @@ public class InterfaceUsuario {
         System.out.printf("\nSimulação do apartamento " + sequencia + " - Informe o andar do imóvel: ");
 
         try {
-            andar = this.entrada.nextInt();
-        } catch (Exception e) {
-            System.out.printf("\nAndar inválido!\n" + e);
+            andar = readInteger(andar);
         } finally {
             if ( andar <= -1 || andar > 200) {
                 System.out.printf("\nAndar deve estar entre 0 de 200!\n");
@@ -147,9 +165,7 @@ public class InterfaceUsuario {
         System.out.printf("\nSimulação da casa " + sequencia + " - Informe a área construída total da casa em m2: ");
 
         try {
-            area = this.entrada.nextDouble();
-        } catch (Exception e) {
-            System.out.printf("\nValor da área inválido!\n" + e);
+            area = readDouble(area);
         } finally {
             if (area <= 0) System.out.printf("\nValor da área deve ser maior que zero!\n");
         }       
@@ -163,9 +179,7 @@ public class InterfaceUsuario {
         System.out.printf("\nSimulação da casa " + sequencia + " - Informe a área do terreno da casa em m2: ");
 
         try {
-            area = this.entrada.nextDouble();
-        } catch (Exception e) {
-            System.out.printf("\nValor da área inválido!\n" + e);
+            area = readDouble(area);
         } finally {
             if (area <= 0) System.out.printf("\nValor da área deve ser maior que zero!\n");
         }       
@@ -174,18 +188,13 @@ public class InterfaceUsuario {
 
     }
 
-    public double pedirValorDesconto(int sequencia, Casa casa){
+    public double pedirValorDesconto(int sequencia){
         double desconto = -1;
 
         System.out.printf("\nSimulação da casa " + sequencia + " - Informe o desconto para o imóvel. Se não houver desconto informe 0: ");
 
         try {
-            desconto = this.entrada.nextDouble();
-            casa.informarDesconto(desconto);
-        } catch (Exception e) {
-            System.out.printf("\nValor do desconto inválido!\n" + e);
-            return -1;
-
+            desconto = readDouble(desconto);
         } finally {
             if (desconto < 0) System.out.printf("\nValor do desconto deve ser maior ou igual a zero!\n");
         }       

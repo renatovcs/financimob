@@ -27,13 +27,13 @@ public class Terreno extends Financiamento {
         return this.calcularTotalPagamento();
     }
 
-    public String gerarLinhaTexto() {
-        return ("tereno\n" + 
-            String.format("%.2f", this.consultarValorImovel())  	      + "\n" + 
-            String.format("%.2f", this.consultarValorFinanciamento())  + "\n" + 
-            String.format("%.2f", this.taxaJurosAnual)                 + "\n" + 
-            this.prazoFinanciamento             + "\n" + 
-            (this.zonaLocalizacao == 1 ? "residencial" : "comercial"));
+    public String gerarLinhaTexto(int sequencia) {
+        return (sequencia + " Condições de empréstimo para um tereno\n" + 
+        "Valor do imóvel: "              + String.format("%.2f", this.consultarValorImovel())  	     + "\n" + 
+        "Valor do financiamento: "       + String.format("%.2f", this.consultarValorFinanciamento())  + "\n" + 
+        "Valor da taxa de juros anual: " + String.format("%.2f", this.taxaJurosAnual)                 + "\n" + 
+        "Prazo do financiamento: "       + this.prazoFinanciamento                                           + "\n" + 
+        "Zona de localização: "          +     (this.zonaLocalizacao == 1 ? "residencial" : "comercial")     + "\n\n" );
 
     }
 

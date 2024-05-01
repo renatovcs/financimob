@@ -19,7 +19,7 @@ public abstract class Financiamento implements Serializable{
 
     protected double calcularTotalPagamento;
 
-    public String gerarLinhaTexto() {
+    public String gerarLinhaTexto(int sequencia) {
         return this.linhaTexto;
     }
 

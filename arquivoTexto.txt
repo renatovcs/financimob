@@ -1,39 +1,50 @@
-casa
-100000.00
-221733.33
-10.00
-40
-80.00
-2.00
-3.00
-0.00
-casa
-100000.00
-221733.33
-10.00
-40
-80.00
-200.00
-30.00
-22.00
-apartamento;100000.00
-88000000.00
-10.00
-40
-0
-0
-apartamento;100000.00
-88000000.00
-10.00
-40
-0
-0
-tereno;100000.00
-9350000.00
-10.00
-40
-comercialtereno;100000.00
-9350000.00
-10.00
-40
-comercial
+1 Condições do empréstimo para casa
+Valor do imóvel: 1.00
+Valor do financiamento: 961.08
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Valor do seguro obrigatório: 80.00
+Área construída: 1.00
+Área do terreno: 1.00
+Valor do desconto concedido: 0.00
+
+2 Condições do empréstimo para casa
+Valor do imóvel: 1.00
+Valor do financiamento: 961.08
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Valor do seguro obrigatório: 80.00
+Área construída: 1.00
+Área do terreno: 1.00
+Valor do desconto concedido: 0.00
+
+3 Condições do empréstimo para apartamento
+Valor do imóvel: 1.00
+Valor do financiamento: 13.00
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Quantidade de vagas na garagem: 1
+Andar no prédio: 1
+
+4 Condições do empréstimo para apartamento
+Valor do imóvel: 1.00
+Valor do financiamento: 13.00
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Quantidade de vagas na garagem: 1
+Andar no prédio: 1
+
+5 Condições de empréstimo para um tereno
+Valor do imóvel: 1.00
+Valor do financiamento: 55.25
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Zona de localização: residencial
+
+6 Condições de empréstimo para um tereno
+Valor do imóvel: 1.00
+Valor do financiamento: 55.25
+Valor da taxa de juros anual: 1.00
+Prazo do financiamento: 1
+Zona de localização: residencial
+
