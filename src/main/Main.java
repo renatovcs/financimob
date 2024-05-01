@@ -46,6 +46,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        System.out.printf("\n\nRENATO CURVELO - SOMATIVA 2");
         System.out.printf("\n\nBem vindo ao sistema de simulação de empréstimos!\nInforme os valores solicitados e veja dos resultados.\n\n");
 
         while (valorImovel == 0) valorImovel = interfaceUsuario.pedirValorImovel();
