@@ -39,36 +39,40 @@ public class Main {
         InterfaceUsuario interfaceUsuario  = new InterfaceUsuario();
         ArrayList<Financiamento> listaFinanciamentos = new ArrayList<Financiamento>();
 
+        System.out.printf("\n\nBem vindo ao sistema de simulação de empréstimos!\nInforme os valores solicitados e veja dos resultados.\n\n");
+
         while (valorImovel == 0) valorImovel = interfaceUsuario.pedirValorImovel();
 
         while (taxaJurosAnual == 0) taxaJurosAnual = interfaceUsuario.pedirTaxaJuros();
 
         while (prazoFinanciamento == 0) prazoFinanciamento = interfaceUsuario.pedirPrazoFinanciamento();
 
-        for (int i = 0; i < quantidadeCasa; i++) {
+        for (int i = 1; i <= quantidadeCasa; i++) {
             Casa financimob = new Casa(valorImovel, prazoFinanciamento, taxaJurosAnual, 80);
 
-            while (financimob.areaConstruida == 0) financimob.areaConstruida = interfaceUsuario.pedirAreaConstruida();
+            while (financimob.areaConstruida <= 0) financimob.areaConstruida = interfaceUsuario.pedirAreaConstruida(i);
 
-            while (financimob.areaTerreno == 0) financimob.areaTerreno = interfaceUsuario.pedirAreaTerreno();
+            while (financimob.areaTerreno <= 0) financimob.areaTerreno = interfaceUsuario.pedirAreaTerreno(i);
+
+            while (financimob.valorDesconto < 0) financimob.valorDesconto = interfaceUsuario.pedirValorDesconto(i, financimob);
 
             listaFinanciamentos.add(financimob);
         }
 
-        for (int i = 0; i < quantidadeApartamento; i++) {
+        for (int i = 1; i <= quantidadeApartamento; i++) {
             Apartamento financimob = new Apartamento(valorImovel, prazoFinanciamento, taxaJurosAnual);
 
-            while (financimob.vagasGaragem == 0) financimob.vagasGaragem = interfaceUsuario.pedirVagasGaragem();
+            while (financimob.vagasGaragem == -1) financimob.vagasGaragem = interfaceUsuario.pedirVagasGaragem(i);
 
-            while (financimob.numeroAndar == 0) financimob.numeroAndar = interfaceUsuario.pedirNumeroAndar();
+            while (financimob.numeroAndar == -1) financimob.numeroAndar = interfaceUsuario.pedirNumeroAndar(i);
 
             listaFinanciamentos.add(financimob);
         }
 
-        for (int i = 0; i < quantidadeTerreno; i++) {
+        for (int i = 1; i <= quantidadeTerreno; i++) {
             Terreno financimob = new Terreno(valorImovel, prazoFinanciamento, taxaJurosAnual);
 
-            while (financimob.zonaLocalizacao == 0) financimob.zonaLocalizacao = interfaceUsuario.pedirZonaLocalizacao();
+            while (financimob.zonaLocalizacao == 0) financimob.zonaLocalizacao = interfaceUsuario.pedirZonaLocalizacao(i);
 
             listaFinanciamentos.add(financimob);
         }

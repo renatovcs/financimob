@@ -27,13 +27,13 @@ public class Apartamento extends Financiamento {
     }
 
     public String gerarLinhaTexto() {
-        return ("apartamento;" + 
-            String.format("%.2f", this.consultarValorImovel())  	      + ";" + 
-            String.format("%.2f", this.consultarValorFinanciamento())  + ";" + 
-            String.format("%.2f", this.taxaJurosAnual)                 + ";" + 
-            String.format("%.0f", this.prazoFinanciamento)             + ";" + 
-            String.format("%.2f", this.vagasGaragem)                   + ";" + 
-            String.format("%.2f", this.numeroAndar)                    + ";" );
+        return ("apartamento\n" + 
+            String.format("%.2f", this.consultarValorImovel())  	      + "\n" + 
+            String.format("%.2f", this.consultarValorFinanciamento())  + "\n" + 
+            String.format("%.2f", this.taxaJurosAnual)                 + "\n" + 
+            this.prazoFinanciamento             + "\n" + 
+            this.vagasGaragem                   + "\n" + 
+            this.numeroAndar                    + "\n" );
 
     }
 

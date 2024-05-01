@@ -6,7 +6,7 @@ public class Casa extends Financiamento {
     private double seguroObrigatorio = 80;
     public double areaConstruida = 0;
     public double areaTerreno = 0;
-    public double valorDesconto = 0;
+    public double valorDesconto = -1;
     public double valorJuros = 0;
 
 
@@ -20,7 +20,12 @@ public class Casa extends Financiamento {
     }
 
     private boolean validarDesconto(double valorJuros, double valorDesconto) throws DescontoMaiorDoQueJurosException {
-        throw new DescontoMaiorDoQueJurosException("Desconto maior que os juros!");
+        
+        if (valorDesconto >  valorJuros) {            
+            throw new DescontoMaiorDoQueJurosException("Desconto maior que os juros!");
+        }
+
+        return true;
     }
 
     public void informarDesconto(double valorDesconto) {
@@ -31,7 +36,10 @@ public class Casa extends Financiamento {
         try {
             validarDesconto(this.valorJuros, this.valorDesconto);
         } catch (DescontoMaiorDoQueJurosException e) {
-            System.out.printf("Msg exceptio:\n\n" + e);
+            
+            System.out.printf("\nMsg exception:\n\n" + e);
+            System.out.printf("\nValor do desconto:" + String.format("%.2f", this.valorDesconto));
+            System.out.printf("\nValor dos juros:" + String.format("%.2f", this.valorJuros));
         }
          
     }
@@ -56,7 +64,7 @@ public class Casa extends Financiamento {
         sb.append(String.format("%.2f", this.consultarValorImovel()) + "\n");
         sb.append(String.format("%.2f", this.consultarValorFinanciamento()) + "\n");
         sb.append(String.format("%.2f", this.taxaJurosAnual) + "\n");
-        sb.append(String.format("%.0f", this.prazoFinanciamento) + "\n");
+        sb.append(this.prazoFinanciamento + "\n");
         sb.append(String.format("%.2f", this.seguroObrigatorio) + "\n");
         sb.append(String.format("%.2f", this.areaConstruida) + "\n");
         sb.append(String.format("%.2f", this.areaTerreno) + "\n");
