@@ -2,7 +2,7 @@ package modelo;
 
 import java.io.Serializable;
 
-public abstract class Financiamento implements Serializable{
+public abstract class Financiamento implements Serializable {
     double valorImovel;
     int prazoFinanciamento;
     double taxaJurosAnual;
